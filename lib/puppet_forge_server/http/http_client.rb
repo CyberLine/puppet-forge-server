@@ -86,7 +86,7 @@ module PuppetForgeServer::Http
       contents = @cache.fetch(url) do
         tmpfile = ::Timeout.timeout(10) do
           PuppetForgeServer::Logger.get.debug "Fetching data for url: #{url} from remote server"
-          open(url, @uri_options)
+          URI.open(url, @uri_options)
         end
         contents = tmpfile.read
         tmpfile.close
